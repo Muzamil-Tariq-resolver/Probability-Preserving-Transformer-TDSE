@@ -1,6 +1,6 @@
 # Probability-Preserving Transformer
 
-A novel Transformer architecture for solving the **Time-Dependent Schrödinger Equation (TDSE)** while guaranteeing **exact probability conservation** through an architectural normalization layer.
+A Transformer architecture for solving the **Time-Dependent Schrödinger Equation (TDSE)** while guaranteeing **exact probability conservation** through an architectural normalization layer.
 
 ---
 
