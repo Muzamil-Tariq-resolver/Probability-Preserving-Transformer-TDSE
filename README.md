@@ -176,15 +176,11 @@ The final temporal token is used to reconstruct the predicted quantum state.
 The unconstrained network output is separated into real and imaginary components and its discrete probability is calculated as:
 
 $$
-P(t)
-=
-\Delta x
-\sum_{i=1}^{N_x}
+P(t) = \Delta x \sum_{i=1}^{N_x}
 \left[
-\operatorname{Re}\left(\psi_i(t)\right)^2
-+
-\operatorname{Im}\left(\psi_i(t)\right)^2
-\right].
+(\mathrm{Re}\,\psi_i(t))^2 +
+(\mathrm{Im}\,\psi_i(t))^2
+\right]
 $$
 
 The predicted wavefunction is then normalized according to:
