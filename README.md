@@ -288,14 +288,13 @@ Prediction accuracy is evaluated using:
 The predicted probability is evaluated over the held-out trajectories using:
 
 $$
-P(t)
-=
+P(t) =
 \Delta x
 \sum_{i=1}^{N_x}
 \left[
-\operatorname{Re}(\psi_i)^2+
-\operatorname{Im}(\psi_i)^2
-\right].
+(\mathrm{Re}\,\psi_i(t))^2 +
+(\mathrm{Im}\,\psi_i(t))^2
+\right]
 $$
 
 The evaluation records:
@@ -317,15 +316,14 @@ The relative energy error is then used to assess whether the learned evolution r
 The similarity between predicted and reference quantum states is evaluated using:
 
 $$
-F(t)
-=
+F(t) =
 \left|
 \left\langle
 \psi_{\mathrm{true}}(t)
 \middle|
 \psi_{\mathrm{pred}}(t)
 \right\rangle
-\right|^2.
+\right|^2
 $$
 
 Fidelity provides a state-level comparison that complements component-wise wavefunction error metrics.
