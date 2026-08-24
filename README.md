@@ -1,91 +1,91 @@
 # Probability-Preserving Transformer
 
-A Transformer architecture for solving the **Time-Dependent Schrödinger Equation (TDSE)** while guaranteeing exact probability conservation through an architectural normalization layer.
+A Transformer-based framework for learning the temporal evolution of quantum wavefunctions governed by the **Time-Dependent Schrödinger Equation (TDSE)** while enforcing probability conservation directly through a hard architectural constraint.
 
 ---
 
 ## Overview
 
-The Time-Dependent Schrödinger Equation (TDSE) is fundamental to quantum mechanics and describes the evolution of quantum wavefunctions over time. Traditional numerical solvers provide accurate solutions but may become computationally expensive for increasingly complex quantum systems.
+The **Probability-Preserving Transformer (PPT)** is designed to learn quantum wavefunction evolution while maintaining the fundamental normalization condition of quantum mechanics.
 
-This repository introduces the Probability-Preserving Transformer (PPT), a Transformer-based deep learning model that learns quantum dynamics while enforcing the physical law of wavefunction normalization directly within the network architecture. Unlike conventional approaches that rely on probability-related loss penalties, the proposed method guarantees exact probability conservation during every forward pass.
+The reference quantum trajectories are generated numerically using the **Crank--Nicolson (CN) method** for a one-dimensional infinite square well. The Transformer then learns to predict future wavefunctions from a short temporal history of previously evolved states.
+
+Unlike approaches that enforce physical properties only through additional loss penalties, the proposed PPT applies a **hard probability-preserving normalization layer** to its output. The predicted complex wavefunction is explicitly normalized during every forward pass, ensuring that its discrete probability remains approximately unity independent of the prediction loss.
+
+The extended version of the study further evaluates whether the same architecture can **generalize across multiple physically distinct initial-condition families**, rather than being trained and evaluated on a single prescribed quantum state.
 
 ---
 
 ## Key Features
 
-- Numerical TDSE data generation
-- Automatic dataset preprocessing
-- Multi-token wavefunction representation
-- Transformer-based quantum dynamics prediction
-- Hard probability-preserving normalization layer
-- End-to-end training pipeline
-- Visualization of quantum evolution
+- Numerical TDSE trajectory generation using the **Crank--Nicolson method**
+- One-dimensional infinite square-well quantum system
+- Multi-token temporal wavefunction representation
+- Transformer-based temporal sequence modeling
+- Hard probability-preserving output normalization
+- Generalization across multiple initial-condition families
+- Trajectory-level train/test splitting to prevent temporal leakage
+- Wavefunction accuracy evaluation
+- Probability conservation analysis
+- Energy consistency analysis
+- Quantum-state fidelity evaluation
+- Spatiotemporal probability-density visualization
+- Computational performance and inference-time benchmarking
+- Jupyter/Colab-based research workflow
+
+---
+
+## Initial-Condition Families
+
+The extended dataset contains **60 independent quantum trajectories** covering four physically distinct classes:
+
+| Initial condition | Number of trajectories | Description |
+|---|---:|---|
+| Ground state | 10 | First infinite-well eigenstate |
+| First excited state | 10 | Second infinite-well eigenstate |
+| Gaussian wavepacket | 20 | Localized, dynamically evolving states |
+| Superposition | 20 | Multi-mode quantum states |
+
+The larger number of Gaussian and superposition trajectories provides additional variation in localized and multi-component quantum dynamics.
+
+Each trajectory contains:
+
+- Spatial coordinate $x$
+- Time $t$
+- Real component of the wavefunction
+- Imaginary component of the wavefunction
+- Trajectory identifier
+- Initial-condition family
+
+The complete dataset contains:
+
+**60 × 100 × 200 = 1,200,000 space-time samples**
 
 ---
 
 ## Methodology
 
-The workflow consists of four stages:
+The overall research workflow consists of the following stages:
 
-1. Generate TDSE solutions using numerical methods.
-2. Preprocess the wavefunction into sequential token representations.
-3. Train the Probability-Preserving Transformer.
-4. Enforce exact probability conservation using architectural normalization.
+### 1. TDSE Data Generation
 
----
+Quantum trajectories are generated for the one-dimensional infinite square well using the **Crank--Nicolson numerical method**.
 
-## Requirements
+The simulations use:
 
-- Python 3.11+
-- PyTorch
-- NumPy
-- SciPy
-- Matplotlib
-- Jupyter Notebook
+- $N_x = 100$ spatial grid points
+- $\Delta x = 1/99$
+- $N_t = 200$ temporal steps
+- $\Delta t = 0.001$
+- Final simulation time $t=0.200$
 
-Install dependencies:
+The numerical trajectories are validated using probability conservation, energy stability, and boundary-condition checks.
 
-```bash
-pip install -r requirements.txt
-```
+### 2. Dataset Construction
 
----
+The generated trajectories are organized into temporal sequences using a **five-state history window**.
 
-## Running the Project
+For each prediction step, the model receives:
 
-### Step 1
-
-Generate the dataset
-
-```
-Data_Generation_&_Reshaping.ipynb
-```
-
-### Step 2
-
-Train the Transformer
-
-```
-Model_Architectures.ipynb
-```
-
----
-
-## Results
-
-The proposed model is evaluated using numerical TDSE solutions as the reference.
-
-Evaluation metrics include:
-
-- Mean Squared Error (MSE)
-- Relative L2 Error
-- Probability Conservation Error
-- Inference Time
-
----
-
-## Author
-
-Muzamil Tariq
-Email: tariqjee1919gmail.com
+```text
+ψ(t_i), ψ(t_{i+1}), ψ(t_{i+2}), ψ(t_{i+3}), ψ(t_{i+4})
