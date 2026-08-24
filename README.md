@@ -241,11 +241,7 @@ The PPT is trained using the following configuration:
 The training objective combines the standard mean squared error with a boundary-weighted contribution:
 
 $$
-\mathcal{L}
-=
-\mathcal{L}_{\mathrm{MSE}}
-+
-\alpha\mathcal{L}_{\mathrm{boundary}}.
+\mathcal{L} = \mathcal{L}_{MSE} + \alpha \mathcal{L}_{boundary}
 $$
 
 The probability-preserving normalization is applied architecturally and is therefore **not introduced as an additional probability penalty** in the loss function.
