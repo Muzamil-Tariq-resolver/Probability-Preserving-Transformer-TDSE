@@ -181,9 +181,9 @@ P(t)
 \Delta x
 \sum_{i=1}^{N_x}
 \left[
-\left|\operatorname{Re}\psi_i(t)\right|^2
+\operatorname{Re}\left(\psi_i(t)\right)^2
 +
-\left|\operatorname{Im}\psi_i(t)\right|^2
+\operatorname{Im}\left(\psi_i(t)\right)^2
 \right].
 $$
 
