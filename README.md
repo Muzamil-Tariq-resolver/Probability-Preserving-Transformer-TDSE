@@ -37,13 +37,13 @@ Tested whether the same PPT architecture can generalize across multiple physical
 
 ## Physical System
 
-The current implementation considers a particle in a **one-dimensional infinite square well**:
+The current implementation considers a particle in a one-dimensional infinite square well:
 
 $$
 V(x)=
 \begin{cases}
-0, & 0<x<L,\\
-\infty, & \text{otherwise}.
+0, & 0 < x < L,\\
+\infty, & x \leq 0 \ \text{or}\ x \geq L.
 \end{cases}
 $$
 
